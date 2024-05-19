@@ -1,22 +1,21 @@
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-// Add event listener to the form
-document.getElementById('myForm').addEventListener('submit', (event) => {
+const form = document.getElementById('myForm');
+form.addEventListener('submit', (event) => {
   event.preventDefault();
-  // Get the form data
-  const formData = new FormData(document.getElementById('myForm'));
+  const title = document.getElementById('title').value;
+  const intro = document.getElementById('intro').value;
+  const body = document.getElementById('body').value;
+  const conclusion = document.getElementById('conclusion').value;
   // Send the form data to the server
   fetch('/submit', {
     method: 'POST',
-    body: formData
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title, intro, body, conclusion })
   })
   .then((response) => response.json())
   .then((data) => {
-    // Handle the response data
     console.log(data);
   })
   .catch((error) => {
     console.error(error);
   });
 });
-}
