@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My App</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Pixela API Example</title>
 </head>
 <body>
-  <h1>Welcome to My App!</h1>
-  <form id="myForm">
+  <h1>Pixela API Example</h1>
+  <form>
     <label for="title">Title:</label>
     <input type="text" id="title" name="title"><br><br>
     <label for="intro">Intro:</label>
@@ -17,8 +14,9 @@
     <textarea id="body" name="body"></textarea><br><br>
     <label for="conclusion">Conclusion:</label>
     <textarea id="conclusion" name="conclusion"></textarea><br><br>
-    <input type="submit" value="Submit">
+    <button id="generate-button">Generate Images</button>
   </form>
+  <div id="image-container"></div>
   <script src="script.js"></script>
 </body>
 </html>
