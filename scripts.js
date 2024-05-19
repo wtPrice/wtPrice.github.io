@@ -8,8 +8,8 @@ generateButton.addEventListener('click', async () => {
   const body = document.getElementById('body').value;
   const conclusion = document.getElementById('conclusion').value;
 
-  // Make an API call to the Pixela API to generate the images
-  const response = await fetch(`https://api.pixeleta.com/v1/pixels?title=${title}&intro=${intro}&body=${body}&conclusion=${conclusion}`);
+  // Make an API call to the Pixels API to generate the images
+  const response = await fetch(`https://api.zPhMQms3thyBjnQnph7jxMBUSau1KlrRKjHOpeOfwkKtT0NXzADh0L8D/pixels?title=${title}&intro=${intro}&body=${body}&conclusion=${conclusion}`);
   const imageData = await response.json();
 
   // Use the Ideogram wrapper to generate the visual representation of the pixel count
