@@ -1,21 +1,21 @@
-const form = document.getElementById('myForm');
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+const form = document.getElementById('form');
+const generateButton = document.getElementById('generate-button');
+const imageContainer = document.getElementById('image-container');
+
+generateButton.addEventListener('click', async () => {
   const title = document.getElementById('title').value;
   const intro = document.getElementById('intro').value;
   const body = document.getElementById('body').value;
   const conclusion = document.getElementById('conclusion').value;
-  // Send the form data to the server
-  fetch('/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title, intro, body, conclusion })
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+
+  // Make an API call to the Pixela API to generate the images
+  const response = await fetch(`https://api.pixeleta.com/v1/pixels?title=${title}&intro=${intro}&body=${body}&conclusion=${conclusion}`);
+  const imageData = await response.json();
+
+  // Use the Ideogram wrapper to generate the visual representation of the pixel count
+  const ideogram = new Ideogram(imageData.pixel_count);
+  const visualRepresentation = ideogram.generateVisualRepresentation();
+
+  // Update the HTML element with the visual representation
+  imageContainer.innerHTML = visualRepresentation;
 });
