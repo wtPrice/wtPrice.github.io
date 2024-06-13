@@ -1,35 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Pixela API Example</title>
-<link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Estimate Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- rest of the code remains the same -->
-  <h1>Pixels API Example</h1>
-  <form>
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title"><br><br>
-    <button id="generate-button-1">Generate Images</button>
-    <div id="image-container-1"></div>
-    <br><br>
-    <label for="intro">Intro:</label>
-    <textarea id="intro" name="intro"></textarea><br><br>
-    <button id="generate-button-2">Generate Images</button>
-    <div id="image-container-2"></div>
-    <br><br>
-    <label for="body">Body:</label>
-    <textarea id="body" name="body"></textarea><br><br>
-    <button id="generate-button-3">Generate Images</button>
-    <div id="image-container-3"></div>
-    <br><br>
-    <label for="conclusion">Conclusion:</label>
-    <textarea id="conclusion" name="conclusion"></textarea><br><br>
-    <button id="generate-button-4">Generate Images</button>
-    <div id="image-container-4"></div>
-  </form>
-  <script src="script.js"></script>
-</body>
+    <div class="container">
+        <h1>Tree Estimate Calculator</h1>
+        <form id="treeForm">
+            <div class="form-group">
+                <label for="height">
+                    <img src="icons/height.png" alt="Height Icon"> Height (ft):
+                </label>
+                <input type="number" id="height" name="height">
+            </div>
+            
+            <div class="form-group">
+                <label for="radius1">
+                    <img src="icons/canopy_radius.png" alt="Canopy Radius Icon"> Canopy Radius 1 (ft):
+                </label>
+                <input type="number" id="radius1" name="radius1">
+            </div>
+            
+            <div class="form-group">
+                <label for="radius2">
+                    <img src="icons/canopy_radius.png" alt="Canopy Radius Icon"> Canopy Radius 2 (ft):
+                </label>
+                <input type="number" id="radius2" name="radius2">
+            </div>
+            
+            <div class="form-group">
+                <label for="canopyHeight">
+                    <img src="icons/canopy_height.png" alt="Canopy Height Icon"> Canopy Height (ft):
+                </label>
+                <input type="number" id="canopyHeight" name="canopyHeight">
+            </div>
+            
+            <div class="form-group">
+                <label for="density">
+                    <img src="icons/density.png" alt="Density Icon"> Density Level:
+                </label>
+                <select id="density" name="density">
+                    <option value="1">1 - Sparse</option>
+                    <option value="2">2 - Medium</option>
+                    <option value="3">3 - Dense</option>
+                    <option value="4">4 - Very Dense</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="trimLevel">
+                    <img src="icons/trim_level.png" alt="Trim Level Icon"> Trim Level:
+                </label>
+                <select id="trimLevel" name="trimLevel">
+                    <option value="1">1 - Basic Trim</option>
+                    <option value="2">2 - Moderate Trim</option>
+                    <option value="3">3 - Heavy Trim</option>
+                    <option value="4">4 - Removal</option>
+                </select>
+            </div>
+            
+            <button type="button" onclick="calculateEstimate()">Calculate</button>
+        </form>
+        <p id="result"></p>
+    </div>
 
-  <!-- rest of the code remains the same -->
+    <script src="script.js"></script>
+</body>
 </html>
