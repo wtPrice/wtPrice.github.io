@@ -4,14 +4,11 @@ const urlsToCache = [
   '/index.html',
   '/styles.css',
   '/script.js',
-  '/icons/height.png',
-  '/icons/canopy_radius.png',
-  '/icons/canopy_height.png',
-  '/icons/density.png',
-  '/icons/basic_trim.png',
-  '/icons/moderate_trim.png',
-  '/icons/heavy_trim.png',
-  '/icons/removal.png'
+  'https://photos.app.goo.gl/98ELkak8HKW5nXs56',
+  'https://photos.app.goo.gl/98ELkak8HKW5nXs56',
+  'https://photos.app.goo.gl/wDNtb9ewqvaW4TZQA',
+  'https://photos.app.goo.gl/r8GcHQfjdtg8RR5s8',
+  'https://photos.app.goo.gl/kVJfKQa1EchN6whS8',
 ];
 
 // Install the service worker
