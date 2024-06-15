@@ -1,3 +1,29 @@
+let currentStep = 1;
+
+function showStep(step) {
+    document.querySelectorAll('.step').forEach(stepElement => {
+        stepElement.style.display = 'none';
+    });
+    const currentStepElement = document.getElementById(`step-${step}`);
+    currentStepElement.style.display = 'block';
+    
+    // Automatically focus on the first input field or select element in the current step
+    const inputField = currentStepElement.querySelector('input, select');
+    if (inputField) {
+        inputField.focus();
+    }
+}
+
+function nextStep(step) {
+    currentStep = step + 1;
+    showStep(currentStep);
+}
+
+function prevStep(step) {
+    currentStep = step - 1;
+    showStep(currentStep);
+}
+
 function calculateEstimate() {
     const height = parseFloat(document.getElementById('height').value);
     const radius1 = parseFloat(document.getElementById('radius1').value);
@@ -21,4 +47,10 @@ function calculateEstimate() {
     const cost = basicTrim * multiplier;
 
     document.getElementById('result').innerText = `Estimated Cost: $${cost.toFixed(2)}`;
+    document.getElementById('downloadButton').style.display = 'block'; // Show the download button
 }
+
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const height = document.getElementById('height').value;
+    const radius1 = document.getElementById('radius1').
