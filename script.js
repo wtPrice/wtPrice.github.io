@@ -53,4 +53,8 @@ function calculateEstimate() {
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
     const height = document.getElementById('height').value;
-    const radius1 = document.getElementById('radius1').
+    const radius1 = document.getElementById('radius1').value;
+    const radius2 = document.getElementById('radius2').value;
+    const canopyHeight = document.getElementById('canopyHeight').value;
+    const density = document.getElementById('density').options[document.getElementById('density').selectedIndex].text;
+    const trimLevel = document.getElementById('trimLevel').options[document.getElementById('trimLevel').selectedIndex].text;
