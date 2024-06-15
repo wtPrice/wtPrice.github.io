@@ -6,20 +6,45 @@
     <title>Tree Estimate Calculator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="/manifest.json">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-            console.log('Service Worker registered with scope:', registration.scope);
-          }, function(error) {
-            console.log('Service Worker registration failed:', error);
-          });
-        });
-      }
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }, function(error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+            });
+        }
+
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+            document.getElementById('auth-container').style.display = 'none';
+            document.getElementById('app-container').style.display = 'block';
+        }
+
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "570167873669-2edb719fp17l9oof9qhik4kirnfad7lp.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("g_id_signin"),
+                { theme: "outline", size: "large" }
+            );
+            google.accounts.id.prompt();
+        };
     </script>
 </head>
 <body>
-    <div class="container">
+    <div id="auth-container">
+        <h2>Please Sign In</h2>
+        <div id="g_id_signin"></div>
+    </div>
+    
+    <div class="container" id="app-container" style="display:none;">
         <h1>Tree Estimate Calculator</h1>
         <form id="treeForm">
             <div class="step" id="step-1">
