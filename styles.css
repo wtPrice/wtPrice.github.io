@@ -28,6 +28,7 @@ header {
 
 .logo {
     max-width: 200px;
+    height: auto; /* Maintain aspect ratio */
 }
 
 h1 {
@@ -102,4 +103,45 @@ button:disabled {
 
 #downloadButton:hover {
     background-color: #219150;
+}
+
+/* Default image size */
+img {
+    width: 500px;
+    height: 500px;
+    object-fit: contain; /* Ensures the image fits within the 500x500 box without distortion */
+}
+
+/* Adjust image size based on screen width */
+@media (max-width: 1200px) {
+    img {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 900px) {
+    img {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Specific adjustments for the logo */
+.logo {
+    max-width: 200px;
+    height: auto; /* Maintain aspect ratio */
+}
+
+@media (max-width: 600px) {
+    .logo {
+        max-width: 150px;
+    }
 }
