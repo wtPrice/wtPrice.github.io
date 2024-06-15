@@ -58,3 +58,20 @@ function downloadPDF() {
     const canopyHeight = document.getElementById('canopyHeight').value;
     const density = document.getElementById('density').options[document.getElementById('density').selectedIndex].text;
     const trimLevel = document.getElementById('trimLevel').options[document.getElementById('trimLevel').selectedIndex].text;
+    const cost = document.getElementById('result').innerText;
+
+    const doc = new jsPDF();
+    doc.text(`Tree Estimate Calculator`, 10, 10);
+    doc.text(`Height: ${height} ft`, 10, 20);
+    doc.text(`Canopy Radius 1: ${radius1} ft`, 10, 30);
+    doc.text(`Canopy Radius 2: ${radius2} ft`, 10, 40);
+    doc.text(`Canopy Height: ${canopyHeight} ft`, 10, 50);
+    doc.text(`Density Level: ${density}`, 10, 60);
+    doc.text(`Trim Level: ${trimLevel}`, 10, 70);
+    doc.text(cost, 10, 80);
+    doc.save('tree-estimate.pdf');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showStep(currentStep);
+});
