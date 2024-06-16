@@ -82,3 +82,8 @@ function prevStep(currentStep) {
     document.getElementById(`step-${currentStep - 1}`).style.display = 'block';
     document.querySelector(`#step-${currentStep - 1} input, #step-${currentStep - 1} select`).focus();
 }
+
+document.getElementById('treeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    calculateEstimate();
+});
