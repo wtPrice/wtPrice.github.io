@@ -1,28 +1,4 @@
-let currentStep = 1;
-
-function showStep(step) {
-    document.querySelectorAll('.step').forEach(stepElement => {
-        stepElement.style.display = 'none';
-    });
-    const currentStepElement = document.getElementById(`step-${step}`);
-    currentStepElement.style.display = 'block';
-    
-    // Automatically focus on the first input field or select element in the current step
-    const inputField = currentStepElement.querySelector('input, select');
-    if (inputField) {
-        inputField.focus();
-    }
-}
-
-function nextStep(step) {
-    currentStep = step + 1;
-    showStep(currentStep);
-}
-
-function prevStep(step) {
-    currentStep = step - 1;
-    showStep(currentStep);
-}
+let totalPrice = 0;
 
 function calculateEstimate() {
     const height = parseFloat(document.getElementById('height').value);
@@ -37,41 +13,72 @@ function calculateEstimate() {
 
     // Trim Level and Density Multipliers
     const multipliers = {
-        1: {1: 1.1, 2: 1.2, 3: 1.7, 4: 4.3},
-        2: {1: 1.4, 2: 1.6, 3: 2.2, 4: 5.1},
-        3: {1: 1.7, 2: 2.0, 3: 2.8, 4: 6.2},
-        4: {1: 2.0, 2: 2.4, 3: 3.4, 4: 7.2}
+        1: { 1: 1.1, 2: 1.2, 3: 1.7, 4: 4.3 },
+        2: { 1: 1.4, 2: 1.6, 3: 2.2, 4: 5.1 },
+        3: { 1: 1.7, 2: 2.0, 3: 2.8, 4: 6.2 },
+        4: { 1: 2.0, 2: 2.4, 3: 3.4, 4: 7.2 }
     };
 
     const multiplier = multipliers[density][trimLevel];
     const cost = basicTrim * multiplier;
 
-    document.getElementById('result').innerText = `Estimated Cost: $${cost.toFixed(2)}`;
-    document.getElementById('downloadButton').style.display = 'block'; // Show the download button
+    totalPrice = cost;
+
+    document.getElementById('result').innerText = `Estimated Price: $${totalPrice.toFixed(2)}`;
+    document.getElementById('downloadButton').style.display = 'block';
 }
 
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
-    const height = document.getElementById('height').value;
-    const radius1 = document.getElementById('radius1').value;
-    const radius2 = document.getElementById('radius2').value;
-    const canopyHeight = document.getElementById('canopyHeight').value;
-    const density = document.getElementById('density').options[document.getElementById('density').selectedIndex].text;
-    const trimLevel = document.getElementById('trimLevel').options[document.getElementById('trimLevel').selectedIndex].text;
-    const cost = document.getElementById('result').innerText;
-
     const doc = new jsPDF();
-    doc.text(`Tree Estimate Calculator`, 10, 10);
-    doc.text(`Height: ${height} ft`, 10, 20);
-    doc.text(`Canopy Radius 1: ${radius1} ft`, 10, 30);
-    doc.text(`Canopy Radius 2: ${radius2} ft`, 10, 40);
-    doc.text(`Canopy Height: ${canopyHeight} ft`, 10, 50);
-    doc.text(`Density Level: ${density}`, 10, 60);
-    doc.text(`Trim Level: ${trimLevel}`, 10, 70);
-    doc.text(cost, 10, 80);
-    doc.save('tree-estimate.pdf');
+    
+    // Add the logo
+    const img = new Image();
+    img.src = 'https://github.com/wtPrice/wtPrice.github.io/assets/169125006/2905b6ed-5f97-4008-b574-ef07cadf024a';
+    img.onload = function() {
+        doc.addImage(img, 'PNG', 10, 10, 50, 50);
+
+        // Set font and add title
+        doc.setFontSize(20);
+        doc.text('Tree Estimate Invoice', 105, 20, null, null, 'center');
+
+        // Add some spacing
+        doc.setFontSize(12);
+        doc.text(' ', 10, 40);
+
+        // Add estimate details
+        let yPos = 60;
+        const estimateDetails = [
+            { label: 'Height (ft):', value: document.getElementById('height').value },
+            { label: 'Canopy Radius 1 (ft):', value: document.getElementById('radius1').value },
+            { label: 'Canopy Radius 2 (ft):', value: document.getElementById('radius2').value },
+            { label: 'Canopy Height (ft):', value: document.getElementById('canopyHeight').value },
+            { label: 'Density Level:', value: document.getElementById('density').value },
+            { label: 'Trim Level:', value: document.getElementById('trimLevel').value }
+        ];
+
+        estimateDetails.forEach(detail => {
+            doc.text(`${detail.label} ${detail.value}`, 10, yPos);
+            yPos += 10;
+        });
+
+        // Add total price
+        doc.setFontSize(16);
+        doc.text(`Total Price: $${totalPrice.toFixed(2)}`, 10, yPos + 20);
+
+        // Save the PDF
+        doc.save('tree_estimate_invoice.pdf');
+    };
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    showStep(currentStep);
-});
+function nextStep(currentStep) {
+    document.getElementById(`step-${currentStep}`).style.display = 'none';
+    document.getElementById(`step-${currentStep + 1}`).style.display = 'block';
+    document.querySelector(`#step-${currentStep + 1} input, #step-${currentStep + 1} select`).focus();
+}
+
+function prevStep(currentStep) {
+    document.getElementById(`step-${currentStep}`).style.display = 'none';
+    document.getElementById(`step-${currentStep - 1}`).style.display = 'block';
+    document.querySelector(`#step-${currentStep - 1} input, #step-${currentStep - 1} select`).focus();
+}
