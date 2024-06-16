@@ -28,7 +28,7 @@ header {
 
 .logo {
     max-width: 200px;
-    height: auto; /* Maintain aspect ratio */
+    height: auto;
 }
 
 h1 {
@@ -39,111 +39,32 @@ h1 {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-top: 10px;
     font-weight: bold;
-    text-align: center;
 }
 
 input, select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    margin-top: 5px;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .button-group {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
-}
-
-button {
-    flex: 1;
-    padding: 10px;
-    margin: 0 5px;
-    border: none;
-    border-radius: 4px;
-    background-color: #3498db;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
-}
-
-#result {
-    font-size: 18px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-#downloadButton {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #27ae60;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#downloadButton:hover {
-    background-color: #219150;
-}
-
-/* Default image size */
-img {
-    width: 500px;
-    height: 500px;
-    object-fit: contain; /* Ensures the image fits within the 500x500 box without distortion */
-    align: center;
-}
-
-/* Adjust image size based on screen width */
-@media (max-width: 1200px) {
-    img {
-        width: 400px;
-        height: 400px;
-    }
-}
-
-@media (max-width: 900px) {
-    img {
-        width: 300px;
-        height: 300px;
-    }
-}
-
-@media (max-width: 600px) {
-    img {
-        width: 200px;
-        height: 200px;
-    }
-}
-
-/* Specific adjustments for the logo */
-.logo {
-    max-width: 200px;
-    height: auto; /* Maintain aspect ratio */
-}
-
-@media (max-width: 600px) {
-    .logo {
-        max-width: 150px;
-    }
-}
