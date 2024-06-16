@@ -21,7 +21,7 @@ body {
 }
 
 header {
-    background-color: #3498db; /* Adjust this color as needed */
+    background-color: #f0f0f0; /* Adjusted to match the grey color in the logo */
     width: 100%;
     padding: 20px 0;
     display: flex;
