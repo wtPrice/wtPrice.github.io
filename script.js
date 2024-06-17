@@ -31,7 +31,7 @@ function calculateEstimate() {
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-    
+
     // Add the logo
     const img = new Image();
     img.src = 'https://github.com/wtPrice/wtPrice.github.io/assets/169125006/2905b6ed-5f97-4008-b574-ef07cadf024a';
