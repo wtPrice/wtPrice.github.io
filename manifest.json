@@ -1,21 +1,21 @@
 {
   "name": "Tree Estimate Calculator",
-  "short_name": "Tree Estimate",
-  "start_url": "/index.html",
+  "short_name": "TreeCalc",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#4caf50",
+  "description": "A calculator for estimating tree service costs.",
   "icons": [
     {
-      "src": "/icons/icon-192x192.png",
+      "src": "path/to/your/logo-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "path/to/your/logo-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "theme_color": "#007bff"
 }
-
