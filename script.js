@@ -29,6 +29,7 @@ function calculateEstimate() {
 }
 
 function downloadPDF() {
+    console.log("PDF generation started");
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
@@ -36,6 +37,7 @@ function downloadPDF() {
     const img = new Image();
     img.src = 'https://github.com/wtPrice/wtPrice.github.io/assets/169125006/2905b6ed-5f97-4008-b574-ef07cadf024a';
     img.onload = function() {
+        console.log("Image loaded");
         doc.addImage(img, 'PNG', 10, 10, 50, 50);
 
         // Set font and add title
@@ -58,6 +60,7 @@ function downloadPDF() {
         ];
 
         estimateDetails.forEach(detail => {
+            console.log(`Adding detail: ${detail.label} ${detail.value}`);
             doc.text(`${detail.label} ${detail.value}`, 10, yPos);
             yPos += 10;
         });
@@ -67,7 +70,12 @@ function downloadPDF() {
         doc.text(`Total Price: $${totalPrice.toFixed(2)}`, 10, yPos + 20);
 
         // Save the PDF
+        console.log("Saving PDF");
         doc.save('tree_estimate_invoice.pdf');
+        console.log("PDF saved");
+    };
+    img.onerror = function() {
+        console.error("Image failed to load");
     };
 }
 
