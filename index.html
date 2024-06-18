@@ -23,7 +23,7 @@
         function handleCredentialResponse(response) {
             console.log("Encoded JWT ID token: " + response.credential);
             document.getElementById('auth-container').style.display = 'none';
-            document.getElementById('app-container').style.display = 'block';
+            document.getElementById('app-container').classList.remove('blur');
         }
 
         window.onload = function () {
@@ -47,7 +47,7 @@
         </div>
     </div>
     
-    <div class="container" id="app-container" style="display:none;">
+    <div class="container blur" id="app-container">
         <header>
             <img src="https://github.com/wtPrice/wtPrice.github.io/assets/169125006/2905b6ed-5f97-4008-b574-ef07cadf024a" alt="WTPrice Logo" class="logo">
         </header>
