@@ -1,3 +1,36 @@
+// Initialize Firebase
+var firebaseConfig = {
+    apiKey: "AIzaSyAY3-XOr0WIIO0qUL52nRpv31VC_1MCVPM",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "reflect-and-inspire-journal",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "1:527702878859:web:15bab9caeff092fabec28e"
+};
+firebase.initializeApp(firebaseConfig);
+
+// Google Sign-In
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    document.getElementById('signInButton').style.display = 'none';
+    document.getElementById('signOutButton').style.display = 'block';
+    document.getElementById('treeForm').style.display = 'block';
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+}
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+        console.log('User signed out.');
+        document.getElementById('signInButton').style.display = 'block';
+        document.getElementById('signOutButton').style.display = 'none';
+        document.getElementById('treeForm').style.display = 'none';
+    });
+}
+
 let totalPrice = 0;
 
 function calculateEstimate() {
@@ -95,3 +128,5 @@ document.getElementById('treeForm').addEventListener('submit', function(e) {
     e.preventDefault();
     calculateEstimate();
 });
+
+document.getElementById('downloadButton').addEventListener('click', downloadPDF);
