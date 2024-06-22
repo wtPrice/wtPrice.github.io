@@ -35,7 +35,11 @@ function downloadPDF() {
     const doc = new jsPDF();
 
     // Add the logo
-   
+    const img = new Image();
+    img.src = 'https://i.imgur.com/diHtzPG.png';
+    img.onload = function() {
+        console.log("Image loaded");
+        doc.addImage(img, 'PNG', 10, 10, 50, 50);
 
         // Set font and add title
         doc.setFontSize(20);
