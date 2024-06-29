@@ -74,6 +74,7 @@ select {
 }
 
 button {
+    text-align: center;
     background-color: #28a745;
     color: white;
     border: none;
@@ -84,8 +85,7 @@ button {
     width: 45%;
     margin-top: 10px;
     font-size: 16px;
-    text-align: center;
-    align: justify;
+    align-items: justify;
 }
 
 button:hover {
