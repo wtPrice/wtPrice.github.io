@@ -43,6 +43,7 @@ h1 {
 
 /* Form styles */
 .form-group img {
+    width: 100%;
     max-width: 300px;
     height: auto;
     display: block;
