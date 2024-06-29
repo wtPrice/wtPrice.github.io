@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    max-width: 640px;
+    max-width: 840px;
     margin: 0 auto;
     background: white;
     padding: 20px;
@@ -28,7 +28,7 @@ header {
 }
 
 .logo {
-    width: 600px;
+    width: 800px;
     margin-bottom: 20px;
 }
 
