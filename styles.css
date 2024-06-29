@@ -39,6 +39,14 @@ h1 {
 }
 
 /* Form styles */
+.form-group img {
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+    
 .form-group {
     margin-bottom: 20px;
 }
