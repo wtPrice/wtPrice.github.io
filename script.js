@@ -1,3 +1,52 @@
+document.addEventListener('DOMContentLoaded', function() {
+    let submissionCount = 0;
+    const modal = document.getElementById("paymentModal");
+    const closeButton = document.getElementsByClassName("close")[0];
+
+    // Close the modal when the close button is clicked
+    closeButton.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    document.getElementById('submit-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        submissionCount++;
+
+        if (submissionCount > 3) {
+            // Show the payment modal
+            modal.style.display = "block";
+        } else {
+            // Process the normal submission
+            // Here you would typically handle the form submission
+            console.log("Processing normal submission");
+        }
+    });
+
+    // Initialize Stripe Elements here as previously described
+    var stripe = Stripe('pk_live_rClVmfpMwlr4dwuDOp1q3Sny');
+    var elements = stripe.elements();
+    var card = elements.create('card');
+    card.mount('#card-element');
+
+    document.getElementById('payment-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                document.getElementById('payment-message').textContent = result.error.message;
+            } else {
+                // Handle the Stripe token as needed for payment
+                console.log("Stripe token created:", result.token);
+            }
+        });
+    });
+});
 // Function to move to the next step in the form
 function nextStep(currentStep) {
     document.getElementById(`step-${currentStep}`).style.display = 'none';
