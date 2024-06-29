@@ -7,7 +7,7 @@ body {
 
 .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 10 auto;
     padding: 20px;
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -20,7 +20,7 @@ header {
 }
 
 .logo {
-    max-width: 145px;
+    max-width: 150px;
     height: auto;
 }
 
