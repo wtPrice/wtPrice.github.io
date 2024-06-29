@@ -78,7 +78,7 @@ button {
     padding: 12px 20px;
     border-radius: 4px;
     cursor: pointer;
-    display: block;
+    display: flex;
     width: 48%;
     margin-top: 10px;
     font-size: 16px;
@@ -126,7 +126,7 @@ button:hover {
 }
 
 #downloadButton {
-    display: block;
+    display: flex;
     width: 48%;
     padding: 12px 0;
     background-color: #007bff;
