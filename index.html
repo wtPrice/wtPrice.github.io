@@ -19,11 +19,12 @@
 <div class="container blur" id="app-container">
     <header>
         <img src="https://i.imgur.com/diHtzPG.png" alt="WTPrice Logo" class="logo">
+        <h1>Tree Estimate Calculator</h1>
     </header>
-    <h1>Tree Estimate Calculator</h1>
     <form id="treeForm">
         <div class="step" id="step-1">
             <div class="form-group">
+                <img src="https://i.imgur.com/hw8j8lX.png" alt="Height Icon">
                 <label for="height">Height (ft):</label>
                 <input type="number" id="height" name="height">
                 <button type="button" onclick="nextStep(1)">Next</button>
@@ -31,6 +32,7 @@
         </div>
         <div class="step" id="step-2" style="display:none;">
             <div class="form-group">
+                <img src="https://i.imgur.com/0ctnbVN.png" alt="Canopy Radius Icon">
                 <label for="radius1">Canopy Radius 1 (ft):</label>
                 <input type="number" id="radius1" name="radius1">
                 <button type="button" onclick="prevStep(2)">Back</button>
@@ -39,6 +41,7 @@
         </div>
         <div class="step" id="step-3" style="display:none;">
             <div class="form-group">
+                <img src="https://i.imgur.com/dHxtC1N.jpg" alt="Canopy Radius 2 Icon">
                 <label for="radius2">Canopy Radius 2 (ft):</label>
                 <input type="number" id="radius2" name="radius2">
                 <button type="button" onclick="prevStep(3)">Back</button>
@@ -47,6 +50,7 @@
         </div>
         <div class="step" id="step-4" style="display:none;">
             <div class="form-group">
+                <img src="https://i.imgur.com/E11LZ8H.png" alt="Canopy Height Icon">
                 <label for="canopyHeight">Canopy Height (ft):</label>
                 <input type="number" id="canopyHeight" name="canopyHeight">
                 <button type="button" onclick="prevStep(4)">Back</button>
@@ -55,6 +59,7 @@
         </div>
         <div class="step" id="step-5" style="display:none;">
             <div class="form-group">
+                <img src="https://i.imgur.com/ICZ2YD4.png" alt="Density Icon">
                 <label for="density">Density Level:</label>
                 <select id="density" name="density">
                     <option value="1">Sparse</option>
@@ -68,6 +73,7 @@
         </div>
         <div class="step" id="step-6" style="display:none;">
             <div class="form-group">
+                <img src="https://i.imgur.com/ICZ2YD4.png" alt="Trim Level Icon">
                 <label for="trimLevel">Trim Level:</label>
                 <select id="trimLevel" name="trimLevel">
                     <option value="1">Basic Trim</option>
