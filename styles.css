@@ -28,7 +28,8 @@ header {
 }
 
 .logo {
-    width: 800px;
+    max-width: 800px;
+    height: auto;
     margin-bottom: 20px;
 }
 
