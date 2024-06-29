@@ -7,9 +7,21 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="script.js" defer></script>
+    <script src="script.js" defer></script>   
 </head>
 <body>
+    <!-- Payment Modal -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Payment Required</h2>
+    <form id="payment-form">
+      <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+      <button type="submit" id="submit-button">Submit Payment</button>
+      <div id="payment-message"></div>
+    </form>
+  </div>
+</div> 
 <div class="overlay" id="auth-container">
     <div class="sign-in-box">
         <h2>Please Sign In</h2>
