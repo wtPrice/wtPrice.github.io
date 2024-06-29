@@ -21,7 +21,7 @@ header {
 }
 
 .logo {
-    max-width: 150px;
+    max-width: 200px;
     height: auto;
 }
 
@@ -37,7 +37,7 @@ h1 {
 }
 
 .form-group img {
-    max-width: 295px;
+    max-width: 300px;
     height: auto;
     display: block;
     margin-top: 20px;
