@@ -39,7 +39,7 @@ h1 {
     max-width: 295px;
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin-top: 20px;
 }
 
 .form-group label {
