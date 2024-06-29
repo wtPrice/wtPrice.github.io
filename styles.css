@@ -50,9 +50,16 @@ h1 {
     margin: 0 auto;
 }
 
-    
-.form-group {
-    margin-bottom: 20px;
+    .form-group {
+    display: flex; /* Uses flexbox to lay out children inline */
+    justify-content: space-between; /* Spreads out children evenly across the main axis */
+    align-items: center; /* Aligns children vertically in the center */
+    padding: 10px 0; /* Adds some padding around the form group for spacing */
+}
+
+button {
+    flex: 1; /* Allows each button to grow and take up half of the available space */
+    margin: 0 5px; /* Adds a small margin between buttons */
 }
 
 .form-group label {
