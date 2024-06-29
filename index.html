@@ -5,137 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tree Estimate Calculator</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="/manifest.json">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                }, function(error) {
-                    console.log('Service Worker registration failed:', error);
-                });
-            });
-        }
-
-        function handleCredentialResponse(response) {
-            console.log("Encoded JWT ID token: " + response.credential);
-            document.getElementById('auth-container').style.display = 'none';
-            document.getElementById('app-container').classList.remove('blur');
-        }
-
-        window.onload = function () {
-            google.accounts.id.initialize({
-                client_id: "570167873669-2edb719fp17l9oof9qhik4kirnfad7lp.apps.googleusercontent.com",
-                callback: handleCredentialResponse
-            });
-            google.accounts.id.renderButton(
-                document.getElementById("g_id_signin"),
-                { theme: "outline", size: "large" }
-            );
-            google.accounts.id.prompt();
-        };
-    </script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="overlay" id="auth-container">
-        <div class="sign-in-box">
-            <h2>Please Sign In</h2>
-            <div id="g_id_signin"></div>
+<div class="overlay" id="auth-container">
+    <div class="sign-in-box">
+        <h2>Please Sign In</h2>
+        <div id="g_id_signin"></div>
+    </div>
+</div>
+<div class="container blur" id="app-container">
+    <header>
+        <img src="https://i.imgur.com/diHtzPG.png" alt="WTPrice Logo" class="logo">
+    </header>
+    <h1>Tree Estimate Calculator</h1>
+    <form id="treeForm">
+        <div class="step" id="step-1">
+            <div class="form-group">
+                <label for="height">Height (ft):</label>
+                <input type="number" id="height" name="height">
+                <button type="button" onclick="nextStep(1)">Next</button>
+            </div>
         </div>
-    </div>
-    
-    <div class="container blur" id="app-container">
-        <header>
-            <img src="https://i.imgur.com/diHtzPG.png" alt="WTPrice Logo" class="logo">
-        </header>
-        <h1>Tree Estimate Calculator</h1>
-        <form id="treeForm">
-            <div class="step" id="step-1">
-                <div class="form-group">
-                    <img src="https://i.imgur.com/hw8j8lX.png" alt="Height Icon">
-                    <label for="height">Height (ft):</label>
-                    <input type="number" id="height" name="height">
-                </div>
-                <div class="button-group">
-                    <button type="button" onclick="nextStep(1)">Next</button>
-                </div>
+        <div class="step" id="step-2" style="display:none;">
+            <div class="form-group">
+                <label for="radius1">Canopy Radius 1 (ft):</label>
+                <input type="number" id="radius1" name="radius1">
+                <button type="button" onclick="prevStep(2)">Back</button>
+                <button type="button" onclick="nextStep(2)">Next</button>
             </div>
-            
-            <div class="step" id="step-2" style="display:none;">
-                <div class="form-group">
-                    <img src="https://i.imgur.com/0ctnbVN.png" alt="Canopy Radius Icon">
-                    <label for="radius1">Canopy Radius 1 (ft):</label>
-                    <input type="number" id="radius1" name="radius1">
-                </div>
-                <div class="button-group">
-                    <button type="button" onclick="prevStep(2)">Back</button>
-                    <button type="button" onclick="nextStep(2)">Next</button>
-                </div>
+        </div>
+        <div class="step" id="step-3" style="display:none;">
+            <div class="form-group">
+                <label for="radius2">Canopy Radius 2 (ft):</label>
+                <input type="number" id="radius2" name="radius2">
+                <button type="button" onclick="prevStep(3)">Back</button>
+                <button type="button" onclick="nextStep(3)">Next</button>
             </div>
-            
-            <div class="step" id="step-3" style="display:none;">
-                <div class="form-group">
-                    <img src="https://i.imgur.com/dHxtC1N.jpg" alt="Canopy Radius Icon">
-                    <label for="radius2">Canopy Radius 2 (ft):</label>
-                    <input type="number" id="radius2" name="radius2">
-                </div>
-                <div class="button-group">
-                    <button type="button" onclick="prevStep(3)">Back</button>
-                    <button type="button" onclick="nextStep(3)">Next</button>
-                </div>
+        </div>
+        <div class="step" id="step-4" style="display:none;">
+            <div class="form-group">
+                <label for="canopyHeight">Canopy Height (ft):</label>
+                <input type="number" id="canopyHeight" name="canopyHeight">
+                <button type="button" onclick="prevStep(4)">Back</button>
+                <button type="button" onclick="nextStep(4)">Next</button>
             </div>
-            
-            <div class="step" id="step-4" style="display:none;">
-                <div class="form-group">
-                    <img src="https://i.imgur.com/E11LZ8H.png" alt="Canopy Height Icon">
-                    <label for="canopyHeight">Canopy Height (ft):</label>
-                    <input type="number" id="canopyHeight" name="canopyHeight">
-                </div>
-                <div class="button-group">
-                    <button type="button" onclick="prevStep(4)">Back</button>
-                    <button type="button" onclick="nextStep(4)">Next</button>
-                </div>
+        </div>
+        <div class="step" id="step-5" style="display:none;">
+            <div class="form-group">
+                <label for="density">Density Level:</label>
+                <select id="density" name="density">
+                    <option value="1">Sparse</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Dense</option>
+                    <option value="4">Very Dense</option>
+                </select>
+                <button type="button" onclick="prevStep(5)">Back</button>
+                <button type="button" onclick="nextStep(5)">Next</button>
             </div>
-            
-            <div class="step" id="step-5" style="display:none;">
-                <div class="form-group">
-                    <img src="https://i.imgur.com/ICZ2YD4.png" alt="Density Icon">
-                    <label for="density">Density Level:</label>
-                    <select id="density" name="density">
-                        <option value="1">1 - Sparse</option>
-                        <option value="2">2 - Medium</option>
-                        <option value="3">3 - Dense</option>
-                        <option value="4">4 - Very Dense</option>
-                    </select>
-                </div>
-                <div class="button-group">
-                    <button type="button" onclick="prevStep(5)">Back</button>
-                    <button type="button" onclick="nextStep(5)">Next</button>
-                </div>
+        </div>
+        <div class="step" id="step-6" style="display:none;">
+            <div class="form-group">
+                <label for="trimLevel">Trim Level:</label>
+                <select id="trimLevel" name="trimLevel">
+                    <option value="1">Basic Trim</option>
+                    <option value="2">Moderate Trim</option>
+                    <option value="3">Heavy Trim</option>
+                    <option value="4">Removal</option>
+                </select>
+                <button type="button" onclick="prevStep(6)">Back</button>
+                <button type="button" onclick="calculateEstimate()">Calculate</button>
             </div>
-            
-            <div class="step" id="step-6" style="display:none;">
-                <div class="form-group">
-                    <img src="https://i.imgur.com/ICZ2YD4.png" alt="Trim Level Icon">
-                    <label for="trimLevel">Trim Level:</label>
-                    <select id="trimLevel" name="trimLevel">
-                        <option value="1">1 - Basic Trim</option>
-                        <option value="2">2 - Moderate Trim</option>
-                        <option value="3">3 - Heavy Trim</option>
-                        <option value="4">4 - Removal</option>
-                    </select>
-                </div>
-                <div class="button-group">
-                    <button type="button" onclick="prevStep(6)">Back</button>
-                    <button type="button" onclick="calculateEstimate()">Calculate</button>
-                </div>
-            </div>
-        </form>
-        <p id="result"></p>
-        <button id="downloadButton" style="display:none;" onclick="downloadPDF()">Download PDF</button>
-    </div>
+        </div>
+    </form>
+    <div id="result"></div>
+    <button id="downloadButton" style="display:none;" onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<script>
+    window.onload = function () {
+        google.accounts.id.initialize({
+            client_id: "570167873669-2edb719fp17l9oof9qhik4kirnfad7lp.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.getElementById("g_id_signin"),
+            { theme: "outline", size: "large" }
+        );
+        google.accounts.id.prompt();
+    };
+
+    function handleCredentialResponse(response) {
+        console.log("Encoded JWT ID token: " + response.credential);
+        document.getElementById('auth-container').style.display = 'none';
+        document.getElementById('app-container').classList.remove('blur');
+    }
+</script>
+
 </body>
 </html>
