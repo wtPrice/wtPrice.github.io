@@ -85,7 +85,7 @@ button {
     width: 45%;
     margin-top: 10px;
     font-size: 16px;
-    align-items: justify;
+    align-items: right;
 }
 
 button:hover {
