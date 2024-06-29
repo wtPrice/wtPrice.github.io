@@ -81,10 +81,11 @@ button {
     border-radius: 4px;
     cursor: pointer;
     display: flex;
-    width: 80%;
+    width: 45%;
     margin-top: 10px;
     font-size: 16px;
     text-align: center;
+    align: justify;
 }
 
 button:hover {
